@@ -32,7 +32,7 @@ if __name__ == '__main__':
     methyl_df["POS"] = pos
     list(methyl_df.columns).index("CHROM")
     list(methyl_df.columns).index("POS")
-    methyl_df.index.name = "ID"
+    methyl_df.index.name = "#ID"
     methyl_df.to_csv(outfile,sep="\t")
     cmd = "(head -n 1 {0} && tail -n +2 {0} | sort -k 9419 -k 9420) > sorted_{0}".format(outfile)
     os.system(cmd)
