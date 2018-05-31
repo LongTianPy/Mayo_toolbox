@@ -36,3 +36,4 @@ if __name__ == '__main__':
     # cmd = "(head -n 1 {0} && tail -n +2 {0} | sort -k {1} -k {2}) > sorted_{0}".format(outfile,idx_chr,idx_pos)
     # os.system(cmd)
     os.system("bgzip -c -f {0} > {0}.gz".format(outfile))
+    os.system("tabix -p vcf {0}.gz".format(outfile))
