@@ -28,6 +28,6 @@ if __name__ == '__main__':
     methyl_df = pd.concat(methyl_chunks)
     methyl_df["CHROM"] = chrom
     methyl_df["POS"] = pos
-    methyl_df.columns.index("CHROM")
-    methyl_df.columns.index("POS")
+    list(methyl_df.columns).index("CHROM")
+    list(methyl_df.columns).index("POS")
     methyl_df.to_csv('processed_mData.txt')
