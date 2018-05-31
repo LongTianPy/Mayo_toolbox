@@ -26,4 +26,6 @@ if __name__ == '__main__':
     del methyl_chunks
     methyl_chunks = pd.read_table(methyl_file,sep='\t',index_col=0,header=0,engine='python',chunksize=500,iterator=True)
     methyl_df = pd.concat(methyl_chunks)
+    methyl_df["CHROM"] = chrom
+    methyl_df["POS"] = pos
     methyl_df.to_csv('processed_mData.txt')
