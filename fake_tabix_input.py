@@ -19,8 +19,8 @@ if __name__ == '__main__':
     pos = []
     for chunk in methyl_chunks:
         probes = list(chunk.index)
-        this_chrom = probe_annot.loc[probes,'CHR']
-        this_pos = probe_annot.loc[probes,'MAPINFO']
+        this_chrom = list(probe_annot.loc[probes,'CHR'].values)
+        this_pos = list(probe_annot.loc[probes,'MAPINFO'].values)
         chrom = chrom + this_chrom
         pos = pos + this_pos
     del methyl_chunks
