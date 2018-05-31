@@ -34,5 +34,6 @@ if __name__ == '__main__':
     list(methyl_df.columns).index("POS")
     methyl_df.index.name = "ID"
     methyl_df.to_csv(outfile,sep="\t")
-    os.system("sort -k 9419 -k 9420 {0} > sorted_{0}".format(outfile))
-    os.system("bgzip -f sorted_{0}".format(outfile))
+    cmd = "(head -n 1 {0} && tail -n +2 {0} | sort -k 9419 -k 9420) > sorted_{0}".format(outfile)
+    os.system(cmd)
+    os.system("bgzip -c -f sorted_{0} > sorted_{0}.gz".format(outfile))
