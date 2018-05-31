@@ -14,6 +14,7 @@ import os
 if __name__ == '__main__':
     probe_annot_file = sys.argv[1]
     methyl_file = sys.argv[2]
+    outfile = sys.argv[3]
     probe_annot = pd.read_table(probe_annot_file,sep='\t',index_col=0,header=0,dtype='string')
     methyl_chunks = pd.read_table(methyl_file,sep='\t',index_col=0,header=0,engine='python',chunksize=500,iterator=True)
     chrom = []
@@ -32,6 +33,6 @@ if __name__ == '__main__':
     list(methyl_df.columns).index("CHROM")
     list(methyl_df.columns).index("POS")
     methyl_df.index.name = "ID"
-    methyl_df.to_csv('processed_mData.txt',sep="\t")
-    os.system("sort -k 9419 -k 9420 processed_mData.txt > sorted_mData.txt")
-    os.system("bgzip --index -f --index-name sorted_mData.txt")
+    methyl_df.to_csv(outfile,sep="\t")
+    os.system("sort -k 9419 -k 9420 {0} > sorted_{0}".format(outfile))
+    os.system("bgzip -f sorted_{0}".format(outfile))
