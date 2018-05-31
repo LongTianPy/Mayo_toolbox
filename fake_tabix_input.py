@@ -34,4 +34,4 @@ if __name__ == '__main__':
     methyl_df.index.name = "ID"
     methyl_df.to_csv('processed_mData.txt',sep="\t")
     os.system("sort -k 9419 -k 9420 processed_mData.txt > sorted_mData.txt")
-    os.system("bgzip -f sorted_mData.txt")
+    os.system("bgzip --index -f --index-name sorted_mData.txt")
