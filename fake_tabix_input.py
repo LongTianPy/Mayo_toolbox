@@ -31,11 +31,7 @@ if __name__ == '__main__':
     methyl_df.insert(loc=0, column='ID', value=list(methyl_df.index))
     methyl_df.insert(loc=0, column = 'POS',value=pos)
     methyl_df.insert(loc=0, column='#CHROM', value=chrom)
-    cols = list(methyl_df.columns)
-    idx_chr = cols.index("CHROM") + 1
-    idx_pos = cols.index("POS") + 1
-    methyl_df.index.name = "ID"
-    methyl_df = methyl_df.sort_values(by=['CHROM','POS'])
+    methyl_df = methyl_df.sort_values(by=['#CHROM','POS'])
     methyl_df.to_csv(outfile,sep="\t",index=False)
     # cmd = "(head -n 1 {0} && tail -n +2 {0} | sort -k {1} -k {2}) > sorted_{0}".format(outfile,idx_chr,idx_pos)
     # os.system(cmd)
