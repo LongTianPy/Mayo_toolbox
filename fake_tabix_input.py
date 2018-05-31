@@ -28,9 +28,9 @@ if __name__ == '__main__':
     del methyl_chunks
     methyl_chunks = pd.read_table(methyl_file,sep='\t',index_col=0,header=0,engine='python',chunksize=500,iterator=True)
     methyl_df = pd.concat(methyl_chunks)
-    methyl_df = methyl_df.insert(loc=0, column='ID', value=list(methyl_df.index))
-    methyl_df = methyl_df.insert(loc=0, column = 'POS',value=pos)
-    methyl_df = methyl_df.insert(loc=0, column='#CHROM', value=chrom)
+    methyl_df.insert(loc=0, column='ID', value=list(methyl_df.index))
+    methyl_df.insert(loc=0, column = 'POS',value=pos)
+    methyl_df.insert(loc=0, column='#CHROM', value=chrom)
     cols = list(methyl_df.columns)
     idx_chr = cols.index("CHROM") + 1
     idx_pos = cols.index("POS") + 1
