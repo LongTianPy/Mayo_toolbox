@@ -30,10 +30,11 @@ if __name__ == '__main__':
     methyl_df = pd.concat(methyl_chunks)
     methyl_df["CHROM"] = chrom
     methyl_df["POS"] = pos
-    list(methyl_df.columns).index("CHROM")
-    list(methyl_df.columns).index("POS")
+    cols = list(methyl_df.columns)
+    idx_chr = cols.index("CHROM") + 1
+    idx_pos = cols.index("POS") + 1
     methyl_df.index.name = "#ID"
     methyl_df.to_csv(outfile,sep="\t")
-    cmd = "(head -n 1 {0} && tail -n +2 {0} | sort -k 9419 -k 9420) > sorted_{0}".format(outfile)
+    cmd = "(head -n 1 {0} && tail -n +2 {0} | sort -k {1} -k {2}) > sorted_{0}".format(outfile,idx_chr,idx_pos)
     os.system(cmd)
     os.system("bgzip -c -f sorted_{0} > sorted_{0}.gz".format(outfile))
