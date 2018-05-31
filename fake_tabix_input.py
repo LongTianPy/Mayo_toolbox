@@ -14,8 +14,8 @@ import os
 if __name__ == '__main__':
     probe_annot_file = sys.argv[1]
     methyl_file = sys.argv[2]
-    probe_annot = pd.read_table(probe_annot_file,sep='\t',index_col=0,header=0,engine='python')
-    methyl_chunks = pd.read_table(methyl_file,sep='\t',index_col=0,header=0,engine='python',chunksize=500,iterator=True)
+    probe_annot = pd.read_table(probe_annot_file,sep='\t',index_col=0,header=0,engine='python',dtype='string')
+    methyl_chunks = pd.read_table(methyl_file,sep='\t',index_col=0,header=0,engine='python',chunksize=500,iterator=True,dtype='string')
     chrom = []
     pos = []
     for chunk in methyl_chunks:
