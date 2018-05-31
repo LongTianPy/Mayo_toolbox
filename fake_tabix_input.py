@@ -30,4 +30,4 @@ if __name__ == '__main__':
     methyl_df["POS"] = pos
     list(methyl_df.columns).index("CHROM")
     list(methyl_df.columns).index("POS")
-    methyl_df.to_csv('processed_mData.txt')
+    methyl_df.to_csv('processed_mData.txt',sep="\t")
