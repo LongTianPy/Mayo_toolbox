@@ -34,7 +34,7 @@ if __name__ == '__main__':
     idx_chr = cols.index("CHROM") + 1
     idx_pos = cols.index("POS") + 1
     methyl_df.index.name = "#ID"
-    methyl_df.sort_values(by=['CHROM','POS'])
+    methyl_df = methyl_df.sort_values(by=['CHROM','POS'])
     methyl_df.to_csv(outfile,sep="\t")
     # cmd = "(head -n 1 {0} && tail -n +2 {0} | sort -k {1} -k {2}) > sorted_{0}".format(outfile,idx_chr,idx_pos)
     # os.system(cmd)
