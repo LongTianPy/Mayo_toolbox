@@ -27,14 +27,20 @@ if __name__ == '__main__':
         this_pos = [int(i) for i in pos_list]
         chrom = chrom + this_chrom
         pos = pos + this_pos
+        print(probes[-1])
     del methyl_chunks
+    print("chunk file deleted.")
     methyl_chunks = pd.read_table(methyl_file,sep='\t',index_col=0,header=0,engine='python',chunksize=500,iterator=True)
     methyl_df = pd.concat(methyl_chunks)
+    print("chunk concatenated")
     methyl_df.insert(loc=0, column='ID', value=list(methyl_df.index))
     methyl_df.insert(loc=0, column = 'POS',value=pos)
     methyl_df.insert(loc=0, column='#CHROM', value=chrom)
     methyl_df = methyl_df.sort_values(by=['#CHROM','POS'])
     methyl_df.to_csv(outfile,sep="\t",index=False)
+    print("df written")
+    del methyl_df
+    print("df deleted")
     # cmd = "(head -n 1 {0} && tail -n +2 {0} | sort -k {1} -k {2}) > sorted_{0}".format(outfile,idx_chr,idx_pos)
     # os.system(cmd)
     os.system("bgzip -c -f {0} > {0}.gz".format(outfile))
