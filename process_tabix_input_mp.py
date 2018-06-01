@@ -37,5 +37,5 @@ if __name__ == '__main__':
         df = pool.apply_async(process_subdf,chunk)
         df.to_csv(outfile+"."+uuid.uuid4(),header=None,index=False,sep="\t")
         df_list.append(df)
-
+    pool.close()
 
