@@ -32,7 +32,7 @@ def process_subdf(df):
 if __name__ == '__main__':
     methyl_file = sys.argv[1]
     pool = mp.Pool(num_thread)
-    methyl_chunks = pd.read_table(methyl_file,sep='\t',index_col=0,header=0,engine='python',chunksize=5000,iterator=True)
+    methyl_chunks = pd.read_table(methyl_file,sep='\t',index_col=0,header=0,engine='python',chunksize=1000,iterator=True)
     for chunk in methyl_chunks:
         df = pool.apply_async(process_subdf,chunk)
     pool.close()
