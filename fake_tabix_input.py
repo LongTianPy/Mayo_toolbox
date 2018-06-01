@@ -20,15 +20,11 @@ if __name__ == '__main__':
     chrom = []
     pos = []
     for chunk in methyl_chunks:
+        chunk = chunk[pd.notnull(chunk["MAPINFO"])]
         probes = list(chunk.index)
         this_chrom = [str(i) for i in list(probe_annot.loc[probes,'CHR'].values)]
         pos_list = list(probe_annot.loc[probes,'MAPINFO'].values)
-        this_pos = []
-        for i in pos_list:
-            try:
-                this_pos.append(int(i))
-            except ValueError:
-                this_pos.append(i)
+        this_pos = [int(i) for i in pos_list]
         chrom = chrom + this_chrom
         pos = pos + this_pos
     del methyl_chunks
