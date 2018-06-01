@@ -9,7 +9,7 @@ import sys
 import uuid
 
 # VARIABLES
-num_thread = mp.cpu_count()/4
+num_thread = mp.cpu_count()
 probe_annot_file = "/data2/external_data/Sun_Zhifu_zxs01/summerprojects/ltian/probe_notnull.txt"
 probe_annot = pd.read_table(probe_annot_file, sep='\t', index_col=0, header=0, dtype='string')
 outfile = "/data2/external_data/Sun_Zhifu_zxs01/summerprojects/ltian/mData_chunks/mData_chunks.txt"
@@ -32,10 +32,8 @@ def process_subdf(df):
 if __name__ == '__main__':
     methyl_file = sys.argv[1]
     pool = mp.Pool(num_thread)
-    df_list = []
     methyl_chunks = pd.read_table(methyl_file,sep='\t',index_col=0,header=0,engine='python',chunksize=5000,iterator=True)
     for chunk in methyl_chunks:
         df = pool.apply_async(process_subdf,chunk)
-        df_list.append(df)
     pool.close()
 
