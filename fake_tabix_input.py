@@ -16,11 +16,11 @@ if __name__ == '__main__':
     methyl_file = sys.argv[2]
     outfile = sys.argv[3]
     probe_annot = pd.read_table(probe_annot_file,sep='\t',index_col=0,header=0,dtype='string')
+    probe_annot = probe_annot[pd.notnull(probe_annot["MAPINFO"])]
     methyl_chunks = pd.read_table(methyl_file,sep='\t',index_col=0,header=0,engine='python',chunksize=500,iterator=True)
     chrom = []
     pos = []
     for chunk in methyl_chunks:
-        chunk = chunk[pd.notnull(chunk["MAPINFO"])]
         probes = list(chunk.index)
         this_chrom = [str(i) for i in list(probe_annot.loc[probes,'CHR'].values)]
         pos_list = list(probe_annot.loc[probes,'MAPINFO'].values)
