@@ -6,6 +6,7 @@
 import sys
 import pandas as pd
 from MySQLdb import Connect
+import uuid
 
 # FUNCTIONS
 def connect_to_db():
@@ -29,13 +30,16 @@ def process_data(input):
         tmp = find_sampleType(i,c)
         acronyms.append(tmp[0])
         tumor_normals.append(tmp[1])
-    with open('/home/long-lamp-username/MethylDB/result/processed_data.txt',"w") as f:
+    output = '/var/www/html/MethylDB/Result/'+str(uuid.uuid4())+'.txt'
+    with open(output,"w") as f:
         f.write("Patient\tAcronym\tTumorNormal\tValue\n")
         for i in range(len(df.index)):
             line = "{0}\t{1}\t{2}\t{3}\n".format(str(df.index[i]),acronyms[i],tumor_normals[i],df[df.index[i]])
             f.write(line)
+    return output
 
 # MAIN
 if __name__ == '__main__':
     input = sys.argv[1]
-    process_data(input)
+    output = process_data(input)
+    print(output)
