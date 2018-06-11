@@ -36,10 +36,9 @@ def parse_gff(gff):
         else:
             continue
     with open('filtered_hg19.txt','w') as f:
-        f.write("Gene_ID\tCHR\tstart\tend\tgene\n")
-        id = 1
+        f.write("CHR\tstart\tend\tgene\n")
         for i in new_line:
-            f.write(str(id) + "\t".join(i) + "\n")
+            f.write("\t".join(i) + "\n")
     return new_line
 
 
