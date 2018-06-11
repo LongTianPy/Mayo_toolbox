@@ -34,9 +34,9 @@ def process_data(input):
     output = '/var/www/html/MethylDB/Result/'+str(filename)+'.txt'
     return_value = '/MethylDB/Result/'+filename+".txt"
     with open(output,"w") as f:
-        f.write("Patient\tAcronym\tTumorNormal\tValue\n")
+        f.write("Patient,Acronym,TumorNormal,Value\n")
         for i in range(len(df.index)):
-            line = "{0}\t{1}\t{2}\t{3}\n".format(str(df.index[i]),acronyms[i],tumor_normals[i],df[df.index[i]])
+            line = "{0},{1},{2},{3}\n".format(str(df.index[i]),acronyms[i],tumor_normals[i],df[df.index[i]])
             f.write(line)
     return return_value
 
