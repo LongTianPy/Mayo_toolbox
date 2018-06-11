@@ -38,7 +38,7 @@ def process_data(input):
         for i in range(len(df.index)):
             line = "{0}\t{1}\t{2}\t{3}\n".format(str(df.index[i]),acronyms[i],tumor_normals[i],df[df.index[i]])
             f.write(line)
-    return
+    return return_value
 
 # MAIN
 if __name__ == '__main__':
