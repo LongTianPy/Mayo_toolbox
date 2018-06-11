@@ -21,7 +21,10 @@ def parse_gff(gff):
     CHR=''
     for i in lines:
         if i[2] == 'region':
-            CHR = i[3]
+            info = i[8].split(";")
+            for each in info:
+                if each.startswith("chromosome="):
+                    CHR = each.split("=")[-1]
         elif i[2] == 'gene':
             start = i[3]
             end = i[4]
