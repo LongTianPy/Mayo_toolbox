@@ -15,7 +15,7 @@ def connect_to_db():
 
 def parse_gff(gff):
     f = open(gff,"r")
-    lines = [i.strip().split("\t") for i in f.readlines()[9:]]
+    lines = [i.strip().split("\t") for i in f.readlines()[9:-1] if not i.startswith("#")]
     f.close()
     new_line = []
     CHR=''
