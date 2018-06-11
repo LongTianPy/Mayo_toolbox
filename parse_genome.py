@@ -32,10 +32,13 @@ def parse_gff(gff):
             new_line.append([CHR,start,end,gene])
         else:
             continue
+    with open('filtered_hg19.txt','w') as f:
+        for i in new_line:
+            f.write("\t".join(i) + "\n")
     return new_line
 
 
 # MAIN
 if __name__ == '__main__':
     gff = sys.argv[1]
-    print(parse_gff(gff))
+    lines = parse_gff(gff)
