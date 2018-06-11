@@ -32,7 +32,7 @@ def process_data(input):
         tumor_normals.append(tmp[1])
     filename = str(uuid.uuid4())
     output = '/var/www/html/MethylDB/Result/'+str(filename)+'.txt'
-    return_value = 'MethylDB/Result/'+filename+".txt"
+    return_value = '/MethylDB/Result/'+filename+".txt"
     with open(output,"w") as f:
         f.write("Patient\tAcronym\tTumorNormal\tValue\n")
         for i in range(len(df.index)):
