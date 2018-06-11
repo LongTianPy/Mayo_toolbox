@@ -30,13 +30,15 @@ def process_data(input):
         tmp = find_sampleType(i,c)
         acronyms.append(tmp[0])
         tumor_normals.append(tmp[1])
-    output = '/var/www/html/MethylDB/Result/'+str(uuid.uuid4())+'.txt'
+    filename = str(uuid.uuid4())
+    output = '/var/www/html/MethylDB/Result/'+str(filename)+'.txt'
+    return_value = 'MethylDB/Result/'+filename+".txt"
     with open(output,"w") as f:
         f.write("Patient\tAcronym\tTumorNormal\tValue\n")
         for i in range(len(df.index)):
             line = "{0}\t{1}\t{2}\t{3}\n".format(str(df.index[i]),acronyms[i],tumor_normals[i],df[df.index[i]])
             f.write(line)
-    return output
+    return
 
 # MAIN
 if __name__ == '__main__':
