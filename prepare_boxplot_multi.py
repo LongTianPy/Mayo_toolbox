@@ -37,7 +37,7 @@ def process_data(input):
         f.write("Acronym,TumorNormal," + ",".join(cpg_ids) + "\n")
         for i in range(len(df.columns[2:])):
             col = df.columns[2:][i]
-            values = [str(i) for i in list(df[col])]
+            values = [str(j) for j in list(df[col])]
             line = "{0},{1},".format(acronyms[i],tumor_normals[i]) + ",".join(values)+"\n"
             f.write(line)
     return ",".join(cpg_ids) + "," + return_filename
