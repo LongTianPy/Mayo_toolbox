@@ -35,9 +35,10 @@ def process_data(input):
     return_filename = '/MethylDB/Result/' + filename + ".txt"
     with open(output,"w") as f:
         f.write("Acronym,TumorNormal," + ",".join(cpg_ids) + "\n")
-        for col in df.columns:
+        for i in range(len(df.columns)):
+            col = df.columns[i]
             values = [str(i) for i in list(df[col])]
-            line = "{0},{1}," + ",".join(values)+"\n"
+            line = "{0},{1},".format(acronyms[i],tumor_normals[i]) + ",".join(values)+"\n"
             f.write(line)
     return ",".join(cpg_ids) + "," + return_filename
 
