@@ -6,6 +6,7 @@
 import sys
 import pandas as pd
 from MySQLdb import Connect
+import os
 import uuid
 
 
@@ -35,11 +36,12 @@ def process_data(input):
     filename = cpg
     output = '/var/www/html/MethylDB/Result/'+str(filename)+'.txt'
     return_value = '/MethylDB/Result/'+filename+".txt"
-    with open(output,"w") as f:
-        f.write("Patient,Acronym,TumorNormal,Value\n")
-        for i in range(len(df.index)):
-            line = "{0},{1},{2},{3}\n".format(str(df.index[i]),acronyms[i],tumor_normals[i],df[df.index[i]])
-            f.write(line)
+    if not os.path.isfile(output):
+        with open(output,"w") as f:
+            f.write("Patient,Acronym,TumorNormal,Value\n")
+            for i in range(len(df.index)):
+                line = "{0},{1},{2},{3}\n".format(str(df.index[i]),acronyms[i],tumor_normals[i],df[df.index[i]])
+                f.write(line)
     return return_value
 
 # MAIN
