@@ -26,12 +26,13 @@ def find_sampleType(sample,c):
 def process_data(input):
     # conn,c=connect_to_db()
     df = pd.read_table(input,sep="\t",header=0,index_col=2)
+    cpg = list(df.index)[0]
     df = df.iloc[0,2:]
     with open(acronym_file,"r") as f:
         acronyms = f.read().strip().split(",")
     with open(status_file,"r") as f:
         tumor_normals = f.read().strip().split(",")
-    filename = str(uuid.uuid4())
+    filename = cpg
     output = '/var/www/html/MethylDB/Result/'+str(filename)+'.txt'
     return_value = '/MethylDB/Result/'+filename+".txt"
     with open(output,"w") as f:
