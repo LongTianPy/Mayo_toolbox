@@ -21,7 +21,7 @@ if __name__ == '__main__':
     conn,c = connect_to_db()
     for i in lines:
         sql = "insert into hg19 (geneName,name,chrom,strand,txStart,TxEnd,cdsStart,cdsEnd,exonCount,exonStarts,exonEnds) " \
-              "values ('{0}','{1}','{2}',{3},{4},{5},{6},{7},'{8}','{9}')".format(i[0],[1],i[2],i[3],i[4],i[5],i[6],
-                                                                                  i[7],i[8],i[9])
+              "values ('{0}','{1}','{2}','{3}',{4},{5},{6},{7},{8},'{9}','{10}')".format(i[0],[1],i[2],i[3],i[4],i[5],i[6],
+                                                                                  i[7],i[8],i[9],i[10])
         c.execute(sql)
         conn.commit()
