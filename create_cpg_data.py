@@ -55,7 +55,8 @@ if __name__ == '__main__':
     conn,c=connect_to_db()
     cpgs = get_all_cpg(c)
     for cpg in cpgs:
-        query_table(cpg,c)
-        process_df(cpg)
+        if not os.path.isfile(base_dir + "CpG/" + cpg + ".txt"):
+            query_table(cpg,c)
+            process_df(cpg)
     c.close()
     conn.close()
