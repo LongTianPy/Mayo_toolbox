@@ -49,6 +49,8 @@ def process_df(cpg_id):
                 for i in range(len(df.columns)):
                     line = "{0},{1},{2}\n".format(acronyms[i],tumor_normals[i],df.iloc[0,i])
                     f.write(line)
+    else:
+        print("no data for " + cpg_id)
 
 # MAIN
 if __name__ == '__main__':
@@ -56,7 +58,10 @@ if __name__ == '__main__':
     cpgs = get_all_cpg(c)
     for cpg in cpgs:
         if not os.path.isfile(base_dir + "CpG/" + cpg + ".txt"):
+            print("Writing " + cpg)
             query_table(cpg,c)
             process_df(cpg)
+        else:
+            print(cpg + " existed.")
     c.close()
     conn.close()
