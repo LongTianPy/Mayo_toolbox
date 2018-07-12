@@ -52,6 +52,6 @@ def wrap(line):
 # MAIN
 if __name__ == '__main__':
     pool = mp.Pool(num_thread)
-    with open(cpg_list_file,"w") as f:
+    with open(cpg_list_file,"r") as f:
         lines = [i.strip().split("\t") for i in f.readlines()]
     pool.map(wrap,lines)
