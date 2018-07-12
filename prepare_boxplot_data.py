@@ -34,7 +34,7 @@ def process_data(input):
     with open(status_file,"r") as f:
         tumor_normals = f.read().strip().split(",")
     filename = cpg
-    output = '/var/www/html/MethylDB/Result/'+str(filename)+'.txt'
+    output = '/data1/MethylDB/CpG/'+str(filename)+'.txt'
     return_value = '/MethylDB/Result/'+filename+".txt"
     if not os.path.isfile(output):
         with open(output,"w") as f:
