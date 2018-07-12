@@ -47,6 +47,7 @@ def wrap(line):
     if not os.path.isfile(output):
         query_table(line)
         process_df(line)
+    os.remove(tabix_dir + cpg_id + ".txt")
 
 # MAIN
 if __name__ == '__main__':
