@@ -36,9 +36,9 @@ def process_df(line):
             tumor_normals = f.read().strip().split(",")
         output = cpg_dir + cpg_id + ".txt"
         with open(output,"w") as f:
-            f.write("Patient,Acronym,TumorNormal,Value\n")
+            f.write("Acronym,TumorNormal,Value\n")
             for i in range(len(df.columns)):
-                line = "{0},{1},{2},{3}\n".format(str(df.columns[i]),acronyms[i],tumor_normals[i],df.iloc[0,i])
+                line = "{0},{1},{2}\n".format(acronyms[i],tumor_normals[i],df.iloc[0,i])
                 f.write(line)
 
 def wrap(line):
