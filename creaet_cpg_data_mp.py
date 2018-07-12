@@ -23,7 +23,7 @@ def query_table(line):
     cpg_id = line[0]
     chromosome = line[1]
     mapinfo = line[2]
-    cmd = "tabix {0} {1}:{2}-{2} > {3}{4}.txt".format(big_table,chromosome,mapinfo,tabix_dir,cpg_id)
+    cmd = "tabix {0} {1}:{2}-{2} -h > {3}{4}.txt".format(big_table,chromosome,mapinfo,tabix_dir,cpg_id)
     os.system(cmd)
 
 def process_df(line):
