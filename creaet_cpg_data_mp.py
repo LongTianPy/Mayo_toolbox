@@ -9,6 +9,7 @@ import multiprocessing as mp
 
 # VARIABLES
 num_thread = mp.cpu_count()
+print(num_thread)
 cpg_list_file = "/data2/external_data/Sun_Zhifu_zxs01/summerprojects/ltian/MethylDB_essentials/cpg_list.txt"
 tabix_dir = "/data2/external_data/Sun_Zhifu_zxs01/summerprojects/ltian/MethylDB_essentials/tabix_result/"
 cpg_dir = "/data2/external_data/Sun_Zhifu_zxs01/summerprojects/ltian/MethylDB_essentials/cpg_result/"
