@@ -37,20 +37,18 @@ def query_table(cpg_id,c):
 def process_df(cpg_id):
     df = pd.read_table(base_dir+"output.txt",sep="\t",header=0,index_col=2)
     df = df.iloc[:,2:]
-    with open(acronym_file,"r") as f:
-        acronyms = f.read().strip().split(",")
-    with open(status_file,"r") as f:
-        tumor_normals = f.read().strip().split(",")
-    output = base_dir + "CpG/" + cpg_id + ".txt"
-    if not os.path.isfile(output):
-        with open(output,"w") as f:
-            f.write("Acronym,TumorNormal,Value\n")
-            for i in range(len(df.columns)):
-                line = "{0},{1},{2}\n".format(acronyms[i],tumor_normals[i],df.iloc[0,i])
-                f.write(line)
-
-
-
+    if len(df.index)==1:
+        with open(acronym_file,"r") as f:
+            acronyms = f.read().strip().split(",")
+        with open(status_file,"r") as f:
+            tumor_normals = f.read().strip().split(",")
+        output = base_dir + "CpG/" + cpg_id + ".txt"
+        if not os.path.isfile(output):
+            with open(output,"w") as f:
+                f.write("Acronym,TumorNormal,Value\n")
+                for i in range(len(df.columns)):
+                    line = "{0},{1},{2}\n".format(acronyms[i],tumor_normals[i],df.iloc[0,i])
+                    f.write(line)
 
 # MAIN
 if __name__ == '__main__':
