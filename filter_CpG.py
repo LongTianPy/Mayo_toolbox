@@ -31,7 +31,7 @@ if __name__ == '__main__':
     pool = mp.Pool(num_thread)
     with open(cpg_list_file, "r") as f:
         lines = [i.strip().split("\t")[0] for i in f.readlines()]
-    results = [pool.apply_async(perform_t_test,cpg) for cpg in lines]
+    results = [pool.apply_async(perform_t_test,(cpg,)) for cpg in lines]
     get_result = [r.get() for r in results]
     with open(base_dir + "remaining_cpg.txt","w") as f:
         for i in get_result:
