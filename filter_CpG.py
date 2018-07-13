@@ -42,15 +42,15 @@ def concat_df(new_df,cpg_id):
 # MAIN
 if __name__ == '__main__':
     pool = mp.Pool(num_thread)
-    # with open(cpg_list_file, "r") as f:
-    #     lines = [i.strip().split("\t")[0] for i in f.readlines()]
-    # results = [pool.apply_async(perform_t_test,(cpg,)) for cpg in lines]
-    # get_result = [r.get() for r in results]
-    # with open(base_dir + "remaining_cpg.txt","w") as f:
-    #     for i in get_result:
-    #         if i != 0:
-    #             f.write(i + "\n")
-    with open(base_dir + "remaining_cpg.txt", "w") as f:
+    with open(cpg_list_file, "r") as f:
+        lines = [i.strip().split("\t")[0] for i in f.readlines()]
+    results = [pool.apply_async(perform_t_test,(cpg,)) for cpg in lines]
+    get_result = [r.get() for r in results]
+    with open(base_dir + "remaining_cpg.txt","w") as f:
+        for i in get_result:
+            if i != 0:
+                f.write(i + "\n")
+    with open(base_dir + "remaining_cpg.txt", "r") as f:
         remain_cpgs = [i.strip() for i in f.readlines()]
     with open(samples_file,"r") as f:
         samples = f.readlines()[0].strip().split("\t")
