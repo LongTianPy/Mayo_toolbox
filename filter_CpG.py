@@ -18,7 +18,7 @@ cpg_list_file = "/data2/external_data/Sun_Zhifu_zxs01/summerprojects/ltian/Methy
 def perform_t_test(cpg_id):
     cpg_file = cpg_dir + cpg_id + ".txt"
     df = pd.read_table(cpg_file,sep=",",header=0)
-    t, p = ttest_ind(df[df["TumorNormal"]=="Tumor"]["Value"],df[df["TumorNormal"]=="Normal"]["Value"],equal_var=False,nan_policy='omit')
+    t, p = ttest_ind(df[df["TumorNormal"]=="Tumor"]["Value"],df[df["TumorNormal"]=="Normal"]["Value"],equal_var=False)
     if p < 0.05:
         return cpg_id
     else:
