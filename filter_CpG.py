@@ -7,6 +7,7 @@ import numpy as np
 from scipy.stats import ttest_ind
 import pandas as pd
 import multiprocessing as mp
+import os
 
 # VARIABLES
 num_thread = mp.cpu_count()/2
@@ -17,10 +18,13 @@ cpg_list_file = "/data2/external_data/Sun_Zhifu_zxs01/summerprojects/ltian/Methy
 # FUNCTIONS
 def perform_t_test(cpg_id):
     cpg_file = cpg_dir + cpg_id + ".txt"
-    df = pd.read_table(cpg_file,sep=",",header=0)
-    t, p = ttest_ind(df[df["TumorNormal"]=="Tumor"]["Value"],df[df["TumorNormal"]=="Normal"]["Value"],equal_var=False)
-    if p < 0.05:
-        return cpg_id
+    if os.path.isfile(cpg_file):
+        df = pd.read_table(cpg_file,sep=",",header=0)
+        t, p = ttest_ind(df[df["TumorNormal"]=="Tumor"]["Value"],df[df["TumorNormal"]=="Normal"]["Value"],equal_var=False)
+        if p < 0.05:
+            return cpg_id
+        else:
+            return 0
     else:
         return 0
 
