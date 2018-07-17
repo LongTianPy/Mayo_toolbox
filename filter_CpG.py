@@ -64,7 +64,7 @@ if __name__ == '__main__':
     # new_df["Status"] = tumor_normals
     # for cpg in remain_cpgs:
     #     concat_df(new_df,cpg)
-    # new_df.to_csv(base_dir + "filtered_mData_w_meta.txt",sep="\t",header=0)
+    # new_df.to_csv(base_dir + "filtered_mData_w_meta.txt",sep="\t",)
     # data_table = new_df.iloc[:,3:]
     # data_table = data_table.T
     # data_table.columns = samples
@@ -73,13 +73,25 @@ if __name__ == '__main__':
     # ward_link = linkage(data_table,'ward')
     # cut = hc.cut_tree(ward_link,2)
     df = pd.read_table(base_dir + "filtered_mData_w_meta.txt",sep="\t", index_col=0,header=None)
-    samples = list(df.iloc[:,0].values)
-    acronyms = list(df.iloc[:,1].values)
-    status = list(df.iloc[:,2].values)
-    unique_acronyms = list(set(acronyms))
-    for acronym in unique_acronyms:
-        sub_df = df[df[:,1]==acronym]
-        sub_df.to_csv(base_dir + acronym + ".txt",sep="\t",header=None)
+    colnames = ["Sample","Acronym","Status"] + remain_cpgs
+    df.columns = colnames
+    samples = list(df['Sample'])
+    acronyms = list(df['Acronym'])
+    status = list(df['Status'])
+    acronym_count = {}
+    for i in acronyms:
+        if i in acronym_count:
+            acronym_count[i] = 1
+        else:
+            acronym_count[i] += 1
+    acronyms_to_study = [i for i in acronym_count if acronym_count[i]>100]
+    for acro in acronyms_to_study:
+        sub_df = df[df["Acronym"]==acro]
+        normal_sub = sub_df[sub_df["Status"]=='Normal']
+        if normal_sub.shape[0]>0:
+            sub_df.to_csv(base_dir + acro + "_filtered.txt",sep="\t")
+
+
 
 
 
