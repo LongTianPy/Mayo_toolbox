@@ -58,20 +58,32 @@ if __name__ == '__main__':
         acronyms = f.read().strip().split(",")
     with open(status_file, "r") as f:
         tumor_normals = f.read().strip().split(",")
-    new_df = pd.DataFrame()
-    new_df["Sample"] = samples
-    new_df["Acronyms"] = acronyms
-    new_df["Status"] = tumor_normals
-    for cpg in remain_cpgs:
-        concat_df(new_df,cpg)
-    new_df.to_csv(base_dir + "filtered_mData_w_meta.txt",sep="\t",header=0)
-    data_table = new_df.iloc[:,3:]
-    data_table = data_table.T
-    data_table.columns = samples
-    data_table.to_csv(base_dir + "filtered_mData.txt",sep="\t",header=0,index_label="CpG_ID")
+    # new_df = pd.DataFrame()
+    # new_df["Sample"] = samples
+    # new_df["Acronyms"] = acronyms
+    # new_df["Status"] = tumor_normals
+    # for cpg in remain_cpgs:
+    #     concat_df(new_df,cpg)
+    # new_df.to_csv(base_dir + "filtered_mData_w_meta.txt",sep="\t",header=0)
+    # data_table = new_df.iloc[:,3:]
+    # data_table = data_table.T
+    # data_table.columns = samples
+    # data_table.to_csv(base_dir + "filtered_mData.txt",sep="\t",header=0,index_label="CpG_ID")
     # dists =pdist(data_table)
     # ward_link = linkage(data_table,'ward')
     # cut = hc.cut_tree(ward_link,2)
+    df = pd.read_table(base_dir + "filtered_mData_w_meta.txt",sep="\t", index_col=0,header=None)
+    samples = list(df.iloc[:,0].values0)
+    acronyms = list(df.iloc[:,1].values)
+    status = list(df.iloc[:,2].values)
+    unique_acronyms = list(set(acronyms))
+    for acronym in unique_acronyms:
+        sub_df = df[df[:,1]==acronym]
+        sub_df.to_csv(base_dir + acronym + ".txt",sep="\t",header=None)
+
+
+
+
 
 
 
