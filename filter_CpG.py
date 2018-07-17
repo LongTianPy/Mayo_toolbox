@@ -73,7 +73,7 @@ if __name__ == '__main__':
     # ward_link = linkage(data_table,'ward')
     # cut = hc.cut_tree(ward_link,2)
     df = pd.read_table(base_dir + "filtered_mData_w_meta.txt",sep="\t", index_col=0,header=None)
-    samples = list(df.iloc[:,0].values0)
+    samples = list(df.iloc[:,0].values)
     acronyms = list(df.iloc[:,1].values)
     status = list(df.iloc[:,2].values)
     unique_acronyms = list(set(acronyms))
