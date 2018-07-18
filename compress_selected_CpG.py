@@ -14,6 +14,7 @@ from os.path import isfile
 # VARIABLES
 cpg_dir = "/data1/MethylDB/CpG/cpg_result/"
 tmp_dir = "/var/www/html/MethylDB/tmp/"
+sample_file = "/data1/MethylDB/samples.txt"
 
 # FUNCTIONS
 def connect_to_db():
@@ -31,7 +32,10 @@ def find_cpg(chr,start,end):
 
 def merge_dfs(cpg_ids):
     df = pd.read_table(cpg_dir + cpg_ids[0] + ".txt",sep=",",header=0)
-    df.columns[3] = 'cpg_ids[0]'
+    df.columns = ["Acronym","Status",cpg_ids[0]]
+    with open(sample_file,"r") as f:
+        samples = f.readlines()[0].strip().split("\t")
+    df.insert(loc=0,column='Sample',value=samples)
     if len(cpg_ids)>1:
         for cpg_id in cpg_ids[1:]:
             iter_df = pd.read_table(cpg_dir + cpg_id + ".txt",sep=",",header=0)
