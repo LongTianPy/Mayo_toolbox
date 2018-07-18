@@ -22,7 +22,7 @@ def connect_to_db():
 
 def find_cpg(chr,start,end):
     conn,c = connect_to_db()
-    c.execute("select Probeset_ID from Probeset where CHR={0} and MAPINFO<={1} and MAPINFO>={2}".format(chr,start,end))
+    c.execute("select Probeset_ID from Probeset where CHR={0} and MAPINFO>={1} and MAPINFO<={2}".format(chr,start,end))
     tmp = c.fetchall()
     cpg_ids = [i[0] for i in tmp]
     return cpg_ids
