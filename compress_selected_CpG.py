@@ -41,10 +41,10 @@ def merge_dfs(cpg_ids):
             iter_df = pd.read_table(cpg_dir + cpg_id + ".txt",sep=",",header=0)
             df[cpg_id] = iter_df['Value']
     file_name = str(uuid4()) + ".txt"
-    df.to_csv(tmp_dir + file_name, sep="\t")
+    df.to_csv(tmp_dir + file_name, sep="\t",index=None)
     zip = file_name + ".zip"
     zipped = zipfile.ZipFile(tmp_dir + zip,"w")
-    zipped.write(file_name,compress_type=zipfile.ZIP_DEFLATED)
+    zipped.write(tmp_dir + file_name,compress_type=zipfile.ZIP_DEFLATED)
     zipped.close()
     os.remove(tmp_dir + file_name)
     return zipfile
