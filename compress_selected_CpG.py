@@ -47,7 +47,7 @@ def merge_dfs(cpg_ids):
     zipped.write(tmp_dir + file_name, arcname=file_name ,compress_type=zipfile.ZIP_DEFLATED)
     zipped.close()
     os.remove(tmp_dir + file_name)
-    return zipfile
+    return zip
 
 # MAIN
 if __name__ == '__main__':
