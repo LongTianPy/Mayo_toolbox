@@ -44,7 +44,7 @@ def merge_dfs(cpg_ids):
     df.to_csv(tmp_dir + file_name, sep="\t",index=None)
     zip = file_name + ".zip"
     zipped = zipfile.ZipFile(tmp_dir + zip,"w")
-    zipped.write(tmp_dir + file_name,compress_type=zipfile.ZIP_DEFLATED)
+    zipped.write(tmp_dir + file_name, arcname=file_name ,compress_type=zipfile.ZIP_DEFLATED)
     zipped.close()
     os.remove(tmp_dir + file_name)
     return zipfile
