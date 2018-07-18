@@ -9,6 +9,7 @@ import sys
 from uuid import uuid4
 import zipfile
 import os
+from os.path import isfile
 
 # VARIABLES
 cpg_dir = "/data1/MethylDB/CpG/cpg_result/"
@@ -25,6 +26,7 @@ def find_cpg(chr,start,end):
     c.execute("select Probeset_ID from Probeset where CHR={0} and MAPINFO>={1} and MAPINFO<={2}".format(chr,start,end))
     tmp = c.fetchall()
     cpg_ids = [i[0] for i in tmp]
+    cpg_ids = [i for i in cpg_ids if isfile(cpg_dir + i + ".txt")]
     return cpg_ids
 
 def merge_dfs(cpg_ids):
