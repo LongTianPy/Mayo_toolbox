@@ -50,13 +50,6 @@ def process_data(input):
                     line = "{0},{1},{2}\n".format(acronyms[i],tumor_normals[i],str(values[i]))
                     f.write(line)
     return ",".join(cpg_ids)
-
-
-
-
-
-
-
     return ",".join(cpg_ids) + "," + return_filename
 
 
