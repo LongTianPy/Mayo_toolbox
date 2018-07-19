@@ -80,7 +80,7 @@ if __name__ == '__main__':
     status = list(df['Status'])
     acronym_count = {}
     for i in acronyms:
-        if i in acronym_count:
+        if i not in acronym_count:
             acronym_count[i] = 1
         else:
             acronym_count[i] += 1
