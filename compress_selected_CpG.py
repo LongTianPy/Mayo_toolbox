@@ -30,7 +30,7 @@ def find_cpg(chr,start,end):
     cpg_ids = [i for i in cpg_ids if isfile(cpg_dir + i + ".txt")]
     return cpg_ids
 
-def merge_dfs(cpg_ids):
+def merge_dfs(cpg_ids,final_filename):
     df = pd.read_table(cpg_dir + cpg_ids[0] + ".txt",sep=",",header=0)
     df.columns = ["Acronym","Status",cpg_ids[0]]
     with open(sample_file,"r") as f:
@@ -42,9 +42,9 @@ def merge_dfs(cpg_ids):
             df[cpg_id] = iter_df['Value']
     file_name = str(uuid4()) + ".txt"
     df.to_csv(tmp_dir + file_name, sep="\t",index=None)
-    zip = file_name + ".zip"
+    zip = final_filename + ".zip"
     zipped = zipfile.ZipFile(tmp_dir + zip,"w")
-    zipped.write(tmp_dir + file_name, arcname=file_name ,compress_type=zipfile.ZIP_DEFLATED)
+    zipped.write(tmp_dir + file_name, arcname=final_filename ,compress_type=zipfile.ZIP_DEFLATED)
     zipped.close()
     os.remove(tmp_dir + file_name)
     return zip
@@ -54,5 +54,9 @@ if __name__ == '__main__':
     chr = sys.argv[1]
     start = sys.argv[2]
     end = sys.argv[3]
-    output = merge_dfs(find_cpg(chr,start,end))
+    try:
+        filename = sys.argv[4] + ".txt"
+    except:
+        filename = "ch" + "-".join(str(chr),str(start),str(end)) + ".txt"
+    output = merge_dfs(find_cpg(chr,start,end),filename)
     print(output)
