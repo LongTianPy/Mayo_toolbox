@@ -3323,7 +3323,10 @@
       <w>`featureNames&lt;-`</w>
       <w>`filterRules&lt;-`</w>
       <w>`first&lt;-`</w>
+      <w>`fn_body&lt;-`</w>
       <w>`fn_env&lt;-`</w>
+      <w>`fn_fmls&lt;-`</w>
+      <w>`fn_fmls_names&lt;-`</w>
       <w>`formals&lt;-`</w>
       <w>`frequency&lt;-`</w>
       <w>`functionBody&lt;-`</w>
@@ -3579,6 +3582,7 @@
       <w>addToSubscene3d</w>
       <w>addTraitToMEs</w>
       <w>addVigs2WinMenu</w>
+      <w>add_case</w>
       <w>add_colorbar</w>
       <w>add_column</w>
       <w>add_count</w>
@@ -4125,16 +4129,21 @@
       <w>as_adj_list</w>
       <w>as_adjacency_matrix</w>
       <w>as_bipartite</w>
+      <w>as_box</w>
+      <w>as_box_if</w>
       <w>as_bytes</w>
       <w>as_call</w>
       <w>as_character</w>
       <w>as_closure</w>
       <w>as_complex</w>
       <w>as_data_frame</w>
+      <w>as_data_mask</w>
+      <w>as_data_pronoun</w>
       <w>as_dictionary</w>
       <w>as_double</w>
       <w>as_edgelist</w>
       <w>as_env</w>
+      <w>as_environment</w>
       <w>as_f_list</w>
       <w>as_factor</w>
       <w>as_function</w>
@@ -4660,15 +4669,20 @@
       <w>calibrate</w>
       <w>calinhara</w>
       <w>call</w>
+      <w>call2</w>
       <w>callCC</w>
       <w>callFun</w>
       <w>callGeneric</w>
       <w>callModule</w>
       <w>callNextMethod</w>
+      <w>call_args</w>
+      <w>call_args_names</w>
       <w>call_depth</w>
+      <w>call_fn</w>
       <w>call_frame</w>
       <w>call_inspect</w>
       <w>call_modify</w>
+      <w>call_name</w>
       <w>call_new</w>
       <w>call_stack</w>
       <w>call_standardise</w>
@@ -4717,6 +4731,7 @@
       <w>cat_line</w>
       <w>cat_print</w>
       <w>cat_rule</w>
+      <w>catch_cnd</w>
       <w>catcolwise</w>
       <w>catdes</w>
       <w>categorical_pal</w>
@@ -4904,6 +4919,7 @@
       <w>chr_along</w>
       <w>chr_encoding</w>
       <w>chr_len</w>
+      <w>chr_unserialise_unicode</w>
       <w>chroma_slice</w>
       <w>chull</w>
       <w>chunk</w>
@@ -5028,10 +5044,13 @@
       <w>cmpfile</w>
       <w>cmpfun</w>
       <w>cnc2003</w>
+      <w>cnd</w>
       <w>cnd_abort</w>
       <w>cnd_error</w>
+      <w>cnd_inform</w>
       <w>cnd_message</w>
       <w>cnd_signal</w>
+      <w>cnd_warn</w>
       <w>cnd_warning</w>
       <w>cnvrt.coords</w>
       <w>co.intervals</w>
@@ -6358,12 +6377,14 @@
       <w>endsWith</w>
       <w>ends_with</w>
       <w>enexpr</w>
+      <w>enexprs</w>
       <w>enframe</w>
       <w>engel</w>
       <w>engine.display.list</w>
       <w>engine_output</w>
       <w>enlist</w>
       <w>enquo</w>
+      <w>enquos</w>
       <w>enquote</w>
       <w>ensemble.VIF</w>
       <w>ensemble.accepted.categories</w>
@@ -6397,6 +6418,8 @@
       <w>ensemble.threshold</w>
       <w>ensemble.weights</w>
       <w>ensemble.zones</w>
+      <w>ensym</w>
+      <w>ensyms</w>
       <w>entPlot</w>
       <w>entanglement</w>
       <w>enterKnitr</w>
@@ -6413,11 +6436,14 @@
       <w>env_clone</w>
       <w>env_depth</w>
       <w>env_get</w>
+      <w>env_get_list</w>
       <w>env_has</w>
       <w>env_inherits</w>
       <w>env_names</w>
       <w>env_parent</w>
       <w>env_parents</w>
+      <w>env_poke</w>
+      <w>env_poke_parent</w>
       <w>env_tail</w>
       <w>env_unbind</w>
       <w>envelope</w>
@@ -6440,6 +6466,7 @@
       <w>errorBars</w>
       <w>errorCondition</w>
       <w>errorSubstitutionMatrices</w>
+      <w>error_cnd</w>
       <w>esApply</w>
       <w>escapeBS</w>
       <w>escapeRegex</w>
@@ -6545,11 +6572,13 @@
       <w>expr</w>
       <w>expr.tree</w>
       <w>exprToFunction</w>
+      <w>expr_deparse</w>
       <w>expr_env</w>
       <w>expr_find</w>
       <w>expr_interp</w>
       <w>expr_label</w>
       <w>expr_name</w>
+      <w>expr_print</w>
       <w>expr_text</w>
       <w>expression</w>
       <w>exprs</w>
@@ -6840,6 +6869,7 @@
       <w>flush_console</w>
       <w>fmclass.add.class</w>
       <w>fmclass.register</w>
+      <w>fn_body</w>
       <w>fn_env</w>
       <w>fn_fmls</w>
       <w>fn_fmls_names</w>
@@ -6903,6 +6933,7 @@
       <w>format_format</w>
       <w>format_tagged_na</w>
       <w>format_tsv</w>
+      <w>format_type_sum</w>
       <w>formatdescribeSingle</w>
       <w>formula</w>
       <w>formula.gam</w>
@@ -8316,6 +8347,9 @@
       <w>inform</w>
       <w>inheritedSlotNames</w>
       <w>inherits</w>
+      <w>inherits_all</w>
+      <w>inherits_any</w>
+      <w>inherits_only</w>
       <w>initExtension</w>
       <w>initFieldArgs</w>
       <w>initFlexmix</w>
@@ -8687,6 +8721,7 @@
       <w>is_bare_vector</w>
       <w>is_binary_lang</w>
       <w>is_bipartite</w>
+      <w>is_box</w>
       <w>is_bytes</w>
       <w>is_call</w>
       <w>is_call_stack</w>
@@ -8695,6 +8730,7 @@
       <w>is_chordal</w>
       <w>is_chr_na</w>
       <w>is_closure</w>
+      <w>is_condition</w>
       <w>is_connected</w>
       <w>is_copyable</w>
       <w>is_cpl_na</w>
@@ -8710,6 +8746,7 @@
       <w>is_env</w>
       <w>is_eval_stack</w>
       <w>is_expr</w>
+      <w>is_expression</w>
       <w>is_false</w>
       <w>is_formula</w>
       <w>is_formulaish</w>
@@ -8741,7 +8778,9 @@
       <w>is_na</w>
       <w>is_name</w>
       <w>is_named</w>
+      <w>is_namespace</w>
       <w>is_node</w>
+      <w>is_node_list</w>
       <w>is_null</w>
       <w>is_numeric</w>
       <w>is_pairlist</w>
@@ -9226,6 +9265,7 @@
       <w>list.graph.attributes</w>
       <w>list.tree</w>
       <w>list.vertex.attributes</w>
+      <w>list2</w>
       <w>list2env</w>
       <w>list2multiData</w>
       <w>listAOVModels</w>
@@ -9816,6 +9856,7 @@
       <w>mergesort</w>
       <w>mergesortorder</w>
       <w>message</w>
+      <w>message_cnd</w>
       <w>metaAnalysis</w>
       <w>metaMDS</w>
       <w>metaMDSdist</w>
@@ -10277,20 +10318,41 @@
       <w>newNetworkOptions</w>
       <w>newSubscene3d</w>
       <w>new_blob</w>
+      <w>new_box</w>
+      <w>new_call</w>
+      <w>new_character</w>
+      <w>new_character_along</w>
       <w>new_cnd</w>
+      <w>new_complex</w>
+      <w>new_complex_along</w>
+      <w>new_data_mask</w>
       <w>new_definition</w>
+      <w>new_double</w>
+      <w>new_double_along</w>
       <w>new_environment</w>
       <w>new_formula</w>
       <w>new_function</w>
       <w>new_handle</w>
+      <w>new_integer</w>
+      <w>new_integer_along</w>
       <w>new_language</w>
+      <w>new_list</w>
+      <w>new_list_along</w>
+      <w>new_logical</w>
+      <w>new_logical_along</w>
+      <w>new_node</w>
       <w>new_ornament</w>
       <w>new_output_handler</w>
       <w>new_overscope</w>
       <w>new_pillar_shaft</w>
       <w>new_pillar_shaft_simple</w>
+      <w>new_pillar_title</w>
+      <w>new_pillar_type</w>
       <w>new_pool</w>
       <w>new_quosure</w>
+      <w>new_raw</w>
+      <w>new_raw_along</w>
+      <w>new_tibble</w>
       <w>newcomb</w>
       <w>newick.eg</w>
       <w>newick2phylog</w>
@@ -10379,6 +10441,13 @@
       <w>node_cdar</w>
       <w>node_cddr</w>
       <w>node_cdr</w>
+      <w>node_poke_caar</w>
+      <w>node_poke_cadr</w>
+      <w>node_poke_car</w>
+      <w>node_poke_cdar</w>
+      <w>node_poke_cddr</w>
+      <w>node_poke_cdr</w>
+      <w>node_poke_tag</w>
       <w>node_tag</w>
       <w>nodebar</w>
       <w>noded_with_condition</w>
@@ -10886,6 +10955,8 @@
       <w>parse_logical</w>
       <w>parse_multipart</w>
       <w>parse_number</w>
+      <w>parse_quo</w>
+      <w>parse_quos</w>
       <w>parse_quosure</w>
       <w>parse_quosures</w>
       <w>parse_taxonomy_default</w>
@@ -10976,6 +11047,8 @@
       <w>pdfclustCBI</w>
       <w>pdiscrete</w>
       <w>pearson.test</w>
+      <w>peek_option</w>
+      <w>peek_options</w>
       <w>peek_vars</w>
       <w>pen.edf</w>
       <w>pension</w>
@@ -11630,6 +11703,7 @@
       <w>pushBack</w>
       <w>pushBackLength</w>
       <w>pushViewport</w>
+      <w>push_options</w>
       <w>putDialog</w>
       <w>putHfig</w>
       <w>putKey</w>
@@ -11682,6 +11756,7 @@
       <w>qqPlot</w>
       <w>qqPlot.fdfm</w>
       <w>qqPlot.lmfm</w>
+      <w>qq_show</w>
       <w>qqline</w>
       <w>qqmath</w>
       <w>qqnorm</w>
@@ -11746,6 +11821,9 @@
       <w>qunif</w>
       <w>quo</w>
       <w>quo_expr</w>
+      <w>quo_get_env</w>
+      <w>quo_get_expr</w>
+      <w>quo_is_call</w>
       <w>quo_is_lang</w>
       <w>quo_is_missing</w>
       <w>quo_is_null</w>
@@ -11753,6 +11831,9 @@
       <w>quo_is_symbolic</w>
       <w>quo_label</w>
       <w>quo_name</w>
+      <w>quo_set_env</w>
+      <w>quo_set_expr</w>
+      <w>quo_squash</w>
       <w>quo_text</w>
       <w>quos</w>
       <w>quos_auto_name</w>
@@ -12960,9 +13041,11 @@
       <w>sco.label</w>
       <w>sco.match</w>
       <w>sco.quant</w>
+      <w>scoped_bindings</w>
       <w>scoped_env</w>
       <w>scoped_envs</w>
       <w>scoped_names</w>
+      <w>scoped_options</w>
       <w>scoped_vars</w>
       <w>score</w>
       <w>score.binary</w>
@@ -14044,6 +14127,7 @@
       <w>style_neg</w>
       <w>style_num</w>
       <w>style_subtle</w>
+      <w>style_subtle_num</w>
       <w>styles</w>
       <w>sub</w>
       <w>subColSummarizeAvg</w>
@@ -15402,6 +15486,8 @@
       <w>vcovPL</w>
       <w>vec</w>
       <w>vec_depth</w>
+      <w>vec_poke_n</w>
+      <w>vec_poke_range</w>
       <w>vech</w>
       <w>vecnorm</w>
       <w>vecseq</w>
@@ -15495,6 +15581,7 @@
       <w>warenv</w>
       <w>warn</w>
       <w>warning</w>
+      <w>warning_cnd</w>
       <w>warnings</w>
       <w>warpbreaks</w>
       <w>wascores</w>
@@ -15580,6 +15667,7 @@
       <w>withRestarts</w>
       <w>withTags</w>
       <w>withVisible</w>
+      <w>with_bindings</w>
       <w>with_dh</w>
       <w>with_drl</w>
       <w>with_edge_</w>
@@ -15593,6 +15681,7 @@
       <w>with_kk</w>
       <w>with_lgl</w>
       <w>with_mds</w>
+      <w>with_options</w>
       <w>with_order</w>
       <w>with_restarts</w>
       <w>with_sugiyama</w>
