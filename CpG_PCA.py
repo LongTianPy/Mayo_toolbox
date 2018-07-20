@@ -37,5 +37,5 @@ def pca(file):
 # MAIN
 if __name__ == '__main__':
     datafiles = [file for file in listdir(base_dir) if file.endswith(".txt")]
-    pool=mp.Pool(num_threads)
-    pool.map(pca,datafiles)
+    for file in datafiles:
+        pca(file)
