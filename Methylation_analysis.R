@@ -11,7 +11,7 @@ data_files <- list.files("./")
 
 cancer_type_analysis <- function(x){
   df <- read.table(x,header=TRUE,sep="\t")
-  data <- df[,4:]
+  data <- df[,c(4:dim(df)[2])]
   PC <- prcomp(data)
   PCi <- data.frame(PC$x,Status=df$Status)
   p <- ggplot(PCi,aes(x=PC1,y=PC2,col=Status))+
