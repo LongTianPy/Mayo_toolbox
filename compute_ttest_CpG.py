@@ -32,7 +32,7 @@ if __name__ == '__main__':
         cpg_id = i.split("/")[-1][:-4]
         p = run_ttest(i)
         pool[cpg_id]=p
-    js = json.dump(pool)
+    js = json.dumps(pool)
     f = open(base_dir + "pvalues.json","w")
     f.write(js)
     f.close()
