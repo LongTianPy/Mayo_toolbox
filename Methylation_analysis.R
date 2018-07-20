@@ -10,7 +10,7 @@ library(gridExtra)
 data_files <- list.files("./")
 
 cancer_type_analysis <- function(x){
-  df <- read.table(x,header=TRUE,sep="\t")
+  df <- read.csv(x,sep="\t")
   data <- df[,c(4:dim(df)[2])]
   PC <- prcomp(data)
   PCi <- data.frame(PC$x,Status=df$Status)
