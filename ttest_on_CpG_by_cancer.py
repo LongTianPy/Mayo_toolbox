@@ -51,4 +51,4 @@ if __name__ == '__main__':
     with open(base_dir + "remaining_cpg.txt", "r") as f:
         remain_cpgs = [i.strip() for i in f.readlines()]
     pool = mp.Pool(num_thread)
-    pool.map(remain_cpgs)
+    pool.map(perform_t_test,remain_cpgs)
