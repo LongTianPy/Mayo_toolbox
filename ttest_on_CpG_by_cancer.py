@@ -49,6 +49,6 @@ def perform_t_test(cpg_id):
 # MAIN
 if __name__ == '__main__':
     with open(base_dir + "cpg_list.txt", "r") as f:
-        remain_cpgs = [i.strip() for i in f.readlines()]
+        remain_cpgs = [i.strip().split("\t")[0] for i in f.readlines()]
     pool = mp.Pool(num_thread)
     pool.map(perform_t_test,remain_cpgs)
