@@ -50,7 +50,7 @@ if __name__ == '__main__':
     #     for i in get_result:
     #         if i != 0:
     #             f.write(i + "\n")
-    with open(base_dir + "remaining_cpg.txt", "r") as f:
+    with open(base_dir + "cpg_list.txt", "r") as f:
         remain_cpgs = [i.strip() for i in f.readlines()]
     with open(samples_file,"r") as f:
         samples = f.readlines()[0].strip().split("\t")
