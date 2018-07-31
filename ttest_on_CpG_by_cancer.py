@@ -17,8 +17,8 @@ cpg_list_file = "/data2/external_data/Sun_Zhifu_zxs01/summerprojects/ltian/Methy
 samples_file = "/data2/external_data/Sun_Zhifu_zxs01/summerprojects/ltian/MethylDB_essentials/samples.txt"
 acronym_file="/data2/external_data/Sun_Zhifu_zxs01/summerprojects/ltian/MethylDB_essentials/Acronyms.txt"
 status_file = "/data2/external_data/Sun_Zhifu_zxs01/summerprojects/ltian/MethylDB_essentials/Tumor_Normal.txt"
-pvalue_table_dir = "/data2/external_data/Sun_Zhifu_zxs01/summerprojects/ltian/MethylDB_essentials/pvalue_tables/"
-pvalue_dir = "/data2/external_data/Sun_Zhifu_zxs01/summerprojects/ltian/MethylDB_essentials/pvalues/"
+pvalue_table_dir = "/data2/external_data/Sun_Zhifu_zxs01/summerprojects/ltian/MethylDB_essentials/pvalues_table_python3/"
+pvalue_dir = "/data2/external_data/Sun_Zhifu_zxs01/summerprojects/ltian/MethylDB_essentials/pvalues_python3/"
 
 # FUNCTIONS
 def perform_t_test(cpg_id):
