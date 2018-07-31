@@ -8,6 +8,7 @@ from scipy.stats import ttest_ind
 import pandas as pd
 import multiprocessing as mp
 import os
+from numpy import nanmean
 
 # VARIABLES
 num_thread = round(mp.cpu_count()/2)
@@ -23,7 +24,8 @@ pvalue_dir = "/data2/external_data/Sun_Zhifu_zxs01/summerprojects/ltian/MethylDB
 # FUNCTIONS
 def perform_t_test(cpg_id):
     if os.path.isfile(cpg_dir+cpg_id+".txt"):
-        table = "<table id='pvalues' class='table table-hover'><thead><tr><th>Cancer type</th><th>p value</th></tr></thead><tbody>"
+        table = "<table id='ttest' class='table table-hover'><thead><tr><th>Cancer type</th><th>p value</th><th>Mean (Tumor)</th>" \
+                "<th>Mean (Normal)</th><th>Mean difference (Tumor - Normal)</th></tr></thead><tbody>"
         pvals = ""
         datafile = cpg_dir + cpg_id + ".txt"
         df = pd.read_table(datafile,sep=",",header=0,index_col=None)
@@ -38,10 +40,12 @@ def perform_t_test(cpg_id):
         for i in cancer_to_test:
             table += "<tr><td scope='col'>{0}</td>".format(i)
             subdf = df[df["Acronym"]==i]
+            mean_tumor = nanmean(subdf[subdf["TumorNormal"]=="Tumor"]["Value"])
+            mean_normal = nanmean(subdf[subdf["TumorNormal"]=="Normal"]["Value"])
             t,p = ttest_ind(subdf[subdf["TumorNormal"]=="Tumor"]["Value"], subdf[subdf["TumorNormal"]=="Normal"]["Value"],equal_var=False,nan_policy='omit')
-            table += "<td>{0}</td>".format(p)
+            table += "<td>{0}</td><td>{1}</td><td>{2}</td><td>{3}</td>".format(p,mean_tumor,mean_normal,mean_tumor-mean_normal)
             table += "</tr>"
-            pvals += "{0},{1}\n".format(i,p)
+            pvals += "{0},{1},{2},{3},{4}\n".format(i,p,mean_tumor,mean_normal,mean_tumor-mean_normal)
         table += "</tbody></table>"
         with open(pvalue_table_dir + cpg_id + ".html","w") as f:
             f.write(table)
