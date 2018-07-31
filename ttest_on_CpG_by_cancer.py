@@ -10,7 +10,7 @@ import multiprocessing as mp
 import os
 
 # VARIABLES
-num_thread = mp.cpu_count()/2
+num_thread = round(mp.cpu_count()/2)
 base_dir = "/data2/external_data/Sun_Zhifu_zxs01/summerprojects/ltian/MethylDB_essentials/"
 cpg_dir = "/data2/external_data/Sun_Zhifu_zxs01/summerprojects/ltian/MethylDB_essentials/cpg_result/"
 cpg_list_file = "/data2/external_data/Sun_Zhifu_zxs01/summerprojects/ltian/MethylDB_essentials/cpg_list.txt"
