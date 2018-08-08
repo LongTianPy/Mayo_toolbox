@@ -59,7 +59,7 @@ def create_island_id(cpg_table):
 
 def reorganize_data(datafile):
     if isfile(base_dir+"Island_meta.txt"):
-        group_df = pd.read_table(base_dir+"Island_meta.txt",sep="\t",header=0)
+        group_df = pd.read_table(base_dir+"Island_meta.txt",sep="\t",header=0,index_col=1)
     else:
         group_df = create_island_id(cpg_table)
     df = pd.read_table(datafile,sep="\t",header=0,index_col=1)
