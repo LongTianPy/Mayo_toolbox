@@ -14,7 +14,7 @@ cpg_result = "/data2/external_data/Sun_Zhifu_zxs01/summerprojects/ltian/MethylDB
 
 # FUNCTIONS
 def create_island_id(cpg_table):
-    df = pd.read_table(cpg_table,sep="\t",header=0,index_col=None)
+    df = pd.read_table(cpg_table,sep="\t",header=0,index_col=None,dtype='str')
     for i in df.index:
         cpg_id = df.loc[i,"Probeset_ID"]
         if not isfile(cpg_result+cpg_id+".txt"):
