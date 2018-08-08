@@ -63,9 +63,9 @@ def reorganize_data(datafile):
     else:
         group_df = create_island_id(cpg_table)
     df = pd.read_table(datafile,sep="\t",header=0,index_col=1)
-    new_df = pd.DataFrame(0,index=df.index,columns=group_df["Island_ID"])
+    new_df = pd.DataFrame(0,index=df.index,columns=group_df.index)
     for idx in new_df.index:
-        for each_island_id in group_df["Island_ID"]:
+        for each_island_id in group_df.index:
             sub_df = df.loc[idx,group_df.loc[each_island_id,"Island_Members"].split(",")]
             ave = sub_df.mean(numeric_only=True)
             new_df.loc[idx,each_island_id]=ave
