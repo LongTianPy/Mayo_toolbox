@@ -8,17 +8,20 @@ import pandas as pd
 from os.path import isfile
 
 # VARIABLES
+cpg_list_file = "/data2/external_data/Sun_Zhifu_zxs01/summerprojects/ltian/MethylDB_essentials/remaining_cpg.txt"
 base_dir = "/data2/external_data/Sun_Zhifu_zxs01/summerprojects/ltian/MethylDB_essentials/filtered_data/"
 cpg_table = "/data2/external_data/Sun_Zhifu_zxs01/summerprojects/ltian/MethylDB_essentials/filtered_data/CpG_ID_by_island.txt"
 cpg_result = "/data2/external_data/Sun_Zhifu_zxs01/summerprojects/ltian/MethylDB_essentials/cpg_result/"
 
 # FUNCTIONS
 def create_island_id(cpg_table):
+    with open(cpg_list_file,"r") as f:
+        cpg_list = [i.strip() for i in f.readlines()]
     df = pd.read_table(cpg_table,sep="\t",header=0,index_col=None,dtype='str')
     cpg_islands = {}
     for i in df.index:
         cpg = df.loc[i,"Probeset_ID"]
-        if isfile(cpg_result+cpg + ".txt"):
+        if cpg in cpg_list:
             island_name = df.loc[i,"UCSC_CpG_Islands_Name"]
             island_relation = df.loc[i,"Relation_to_UCSC_CpG_Island"]
             if island_name not in cpg_islands:
@@ -67,7 +70,7 @@ def reorganize_data(datafile):
             if len(cols)>1:
                 cols = cols
             else:
-                cols = cols[0]
+                cols = str(cols[0])
             sub_df = df.loc[idx,cols]
             ave = sub_df.mean()
             new_df.loc[idx,each_island_id]=ave
@@ -75,5 +78,5 @@ def reorganize_data(datafile):
 
 # MAIN
 if __name__ == '__main__':
-    # create_island_id(cpg_table)
-    reorganize_data(sys.argv[1])
+    create_island_id(cpg_table)
+    # reorganize_data(sys.argv[1])
