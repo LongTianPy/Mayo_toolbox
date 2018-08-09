@@ -57,7 +57,7 @@ def reorganize_data(datafile):
         group_df = pd.read_table(base_dir+"Island_meta.txt",sep="\t",header=0,index_col=1)
     else:
         group_df = create_island_id(cpg_table)
-    df = pd.read_table(datafile,sep="\t",header=0,index_col=1)
+    df = pd.read_table(base_dir + datafile,sep="\t",header=0,index_col=1)
     new_df = pd.DataFrame(0,index=df.index,columns=group_df.index)
     for idx in new_df.index:
         # print(idx)
@@ -76,4 +76,4 @@ def reorganize_data(datafile):
 # MAIN
 if __name__ == '__main__':
     create_island_id(cpg_table)
-    # reorganize_data(base_dir+sys.argv[1])
+    # reorganize_data(sys.argv[1])
