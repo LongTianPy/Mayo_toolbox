@@ -79,7 +79,7 @@ def reorganize_data(datafile):
         ave = sub_df.mean()
         new_df.loc[idx,job[1]] = ave
     pool = mp.Pool(cpu_size)
-    pool.map(job_map)
+    pool.map(fill_value, job_map)
     new_df.to_csv(base_dir + datafile + ".reorganized",sep="\t")
 
 # MAIN
