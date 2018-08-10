@@ -6,8 +6,10 @@
 import sys
 import pandas as pd
 from os.path import isfile
+import multiprocessing as mp
 
 # VARIABLES
+cpu_size = round(mp.cpu_count()/2)
 cpg_list_file = "/data2/external_data/Sun_Zhifu_zxs01/summerprojects/ltian/MethylDB_essentials/remaining_cpg.txt"
 base_dir = "/data2/external_data/Sun_Zhifu_zxs01/summerprojects/ltian/MethylDB_essentials/filtered_data/"
 cpg_table = "/data2/external_data/Sun_Zhifu_zxs01/summerprojects/ltian/MethylDB_essentials/filtered_data/CpG_ID_by_island.txt"
@@ -62,21 +64,25 @@ def reorganize_data(datafile):
         group_df = create_island_id(cpg_table)
     df = pd.read_table(base_dir + datafile,sep="\t",header=0,index_col=1)
     new_df = pd.DataFrame(0,index=df.index,columns=group_df.index)
-    for idx in new_df.index:
-        # print(idx)
-        for each_island_id in group_df.index:
-            # print(each_island_id)
-            cols = group_df.loc[each_island_id,"Island_Members"].split(",")
-            if len(cols)>1:
-                cols = cols
-            else:
-                cols = str(cols[0])
-            sub_df = df.loc[idx,cols]
-            ave = sub_df.mean()
-            new_df.loc[idx,each_island_id]=ave
+    job_map = []
+    for sample in new_df.index:
+        for island in new_df.columns:
+            job_map.append([sample,island])
+    def fill_value(job):
+        idx = job[0]
+        col = group_df.loc[job[1],"Island_Members"].split(",")
+        if len(col)>1:
+            col = col
+        else:
+            col = str(col[0])
+        sub_df = df.loc[idx,col]
+        ave = sub_df.mean()
+        new_df.loc[idx,job[1]] = ave
+    pool = mp.Pool(cpu_size)
+    pool.map(job_map)
     new_df.to_csv(base_dir + datafile + ".reorganized",sep="\t")
 
 # MAIN
 if __name__ == '__main__':
-    create_island_id(cpg_table)
-    # reorganize_data(sys.argv[1])
+    # create_island_id(cpg_table)
+    reorganize_data(sys.argv[1])
