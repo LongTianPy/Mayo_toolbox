@@ -78,5 +78,5 @@ def reorganize_data(datafile):
 
 # MAIN
 if __name__ == '__main__':
-    # create_island_id(cpg_table)
-    reorganize_data(sys.argv[1])
+    create_island_id(cpg_table)
+    # reorganize_data(sys.argv[1])
