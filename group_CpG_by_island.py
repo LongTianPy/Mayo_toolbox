@@ -7,6 +7,7 @@ import sys
 import pandas as pd
 from os.path import isfile
 import multiprocessing as mp
+from functools import partial
 
 # VARIABLES
 cpu_size = round(mp.cpu_count()/2)
@@ -57,6 +58,17 @@ def create_island_id(cpg_table):
     new_df.to_csv(base_dir+"Island_meta.txt",sep="\t")
     return new_df
 
+def fill_value(job,group_df,df,new_df):
+    idx = job[0]
+    col = group_df.loc[job[1],"Island_Members"].split(",")
+    if len(col)>1:
+        col = col
+    else:
+        col = str(col[0])
+    sub_df = df.loc[idx,col]
+    ave = sub_df.mean()
+    new_df.loc[idx,job[1]] = ave
+
 def reorganize_data(datafile):
     if isfile(base_dir+"Island_meta.txt"):
         group_df = pd.read_table(base_dir+"Island_meta.txt",sep="\t",header=0,index_col=1)
@@ -68,18 +80,9 @@ def reorganize_data(datafile):
     for sample in new_df.index:
         for island in new_df.columns:
             job_map.append([sample,island])
-    def fill_value(job):
-        idx = job[0]
-        col = group_df.loc[job[1],"Island_Members"].split(",")
-        if len(col)>1:
-            col = col
-        else:
-            col = str(col[0])
-        sub_df = df.loc[idx,col]
-        ave = sub_df.mean()
-        new_df.loc[idx,job[1]] = ave
+    partial_fill = partial(fill_value,group_df=group_df,df=df,new_df=new_df)
     pool = mp.Pool(cpu_size)
-    pool.map(fill_value, job_map)
+    pool.map(partial_fill, job_map)
     new_df.to_csv(base_dir + datafile + ".reorganized",sep="\t")
 
 # MAIN
