@@ -81,7 +81,7 @@ def reorganize_data(datafile):
         for island in new_df.columns:
             job_map.append([sample,island])
     for job in job_map:
-        fill_value(job,group_df,new_df)
+        fill_value(job,group_df,df,new_df)
     new_df.to_csv(base_dir + datafile + ".reorganized",sep="\t")
 
 # MAIN
