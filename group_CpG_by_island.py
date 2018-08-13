@@ -80,9 +80,8 @@ def reorganize_data(datafile):
     for sample in new_df.index:
         for island in new_df.columns:
             job_map.append([sample,island])
-    partial_fill = partial(fill_value,group_df=group_df,df=df,new_df=new_df)
-    pool = mp.Pool(cpu_size)
-    pool.map(partial_fill, job_map)
+    for job in job_map:
+        fill_value(job,group_df,new_df)
     new_df.to_csv(base_dir + datafile + ".reorganized",sep="\t")
 
 # MAIN
